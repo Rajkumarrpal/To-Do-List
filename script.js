@@ -1,26 +1,37 @@
-
 let taskInput = document.getElementById("taskInput");
+
 let addBtn = document.getElementById("addBtn");
+
 let taskList = document.getElementById("taskList");
 
-addBtn.addEventListener("click",function(){
-   let taskk = taskInput.value
-   console.log(taskk);
-   if (taskk === "") {
-      alert("Enter Your Task")
-      return
-   }
+let taskCount = document.getElementById("taskCount");
 
-   let Tasklist = document.createElement("li");
-   Tasklist.setAttribute("class", "Task");
-   Tasklist.textContent = taskk;
+addBtn.addEventListener("click", function () {
+  // 1. Input ki value lena
+  let input = taskInput.value.trim();
 
-   taskList.appendChild(Tasklist);
-    taskInput.value = "";
+  // 2. Empty input check
+  if (input === "") {
+    alert("Task enter karo");
 
-    taskCount.textContent = "Total Tasks: " + Tasklist.children.length;
+    return;
+  }
 
-   
-   
-   
-})
+  // 3. New li create karna
+  let task = document.createElement("li");
+
+  // 4. li ko class dena
+  task.setAttribute("class", "task");
+
+  // 5. Task ka text add karna
+  task.textContent = input;
+
+  // 6. Task ko taskList mein add karna
+  taskList.appendChild(task);
+
+  // 7. Input clear karna
+  taskInput.value = "";
+
+  // 8. Task count update karna
+  taskCount.textContent = "Total Tasks: " + taskList.children.length;
+});
